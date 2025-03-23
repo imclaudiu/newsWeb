@@ -1,0 +1,20 @@
+CREATE TABLE webUser(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(150),
+    password VARCHAR(250) NOT NULL,
+    gender VARCHAR(2) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    isReporter BOOLEAN NOT NULL
+);
+
+CREATE TABLE article(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    authorId BIGINT NOT NULL,
+    FOREIGN KEY (authorId) REFERENCES webUser(id) ON DELETE CASCADE);
+
